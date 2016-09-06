@@ -18,6 +18,14 @@ helpers do
   def find_by(category)
     session[:categories].select { |ctg| ctg[:category_type] == category }
   end
+
+  def find_total(*category)
+    total = []
+    category.each do |category|
+      total << find_by(category).map { |ctg| ctg[:amount].to_i }.inject(:+)
+    end
+    total.inject(:+)
+  end
 end
 
 get '/' do

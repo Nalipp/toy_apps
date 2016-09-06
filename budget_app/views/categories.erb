@@ -8,34 +8,36 @@
   </tr>
   <tr>
     <td><button><a href="/new_category/new_bills"> add </a></button></td>
-    <td>bills</td>
-    <td>$0</td>
+    <td><a href="/new_category/new_bills">bills</a></td>
+    <td>$<%= find_total("new_bills") %></td>
   </tr>
   <tr>
     <td><button><a href="/new_category/new_food"> add </a></button></td>
-    <td>food</td>
-    <td>$0</td>
+    <td><a href="/new_category/new_food">food</a></td>
+    <td>$<%= find_total("new_food") %></td>
   </tr>
   <tr>
     <td><button><a href="/new_category/new_clothing"> add </a></button></td>
-    <td>clothing</td>
-    <td>$0</td>
+    <td><a href="/new_category/new_clothing">clothing</a></td>
+    <td>$<%= find_total("new_clothing") %></td>
   </tr>
   <tr>
     <td><button><a href="/new_category/new_entertainment"> add </a></button></td>
-    <td>entertainment</td>
-    <td>$0</td>
+    <td><a href="/new_category/new_entertainment">entertainment</a></td>
+    <td>$<%= find_total("new_entertainment") %></td>
   </tr>
   <tr>
     <td><button><a href="/new_category/new_transportation"> add </a></button></td>
-    <td>transportation</td>
-    <td>$0</td>
+    <td><a href="/new_category/new_transportation">transportation</a></td>
+    <td>$<%= find_total("new_transportation") %></td>
   </tr>
   <tr>
     <td><button><a href="/new_category/new_misc"> add </a></button></td>
-    <td>misc</td>
-    <td>$0</td>
+    <td><a href="/new_category/new_misc">misc</a></td>
+    <td>$<%= find_total("new_misc") %></td>
   </tr>
   <tr>
   </tr>
 </table>
+
+<h3>total $<%= find_total("new_bills", "new_food", "new_clothing", "new_entertainment", "new_transportation", "new_misc") %></h3>
