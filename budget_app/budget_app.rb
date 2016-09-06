@@ -25,11 +25,16 @@ get '/' do
 end
 
 def validate_invalid_length(*values)
-  !values.select { |value| value.length > 100 }.empty?
+  !values.select { |value| value.length > 80 }.empty?
 end
 
 def validate_empty_value(*values)
   !values.select { |value| value.length < 1 }.empty?
+end
+
+def find_next_id(category)
+  return 0 if find_by(category).empty?
+  find_by(category).last[:id]
 end
 
 get '/categories' do
@@ -46,6 +51,7 @@ post '/new_category/:category_type' do
   @amount = params[:amount]
   @description = params[:description]
   @category_type = params[:category_type]
+  @id = find_next_id(@category_type) + 1
 
   if validate_invalid_length(@date, @amount, @description)
     session[:error] = "Inputs must be less than 100 characters"
@@ -54,7 +60,11 @@ post '/new_category/:category_type' do
     session[:error] = "Amount must not be empty"
     erb :new_category
   else
-    session[:categories] << { date: @date, amount: @amount, description: @description, category_type: @category_type }
+    session[:categories] << { id: @id, date: @date, amount: @amount, description: @description, category_type: @category_type }
     redirect "/new_category/#{@category_type}"
+  end
+
+  post '/new_category/:category_id' do
+
   end
 end

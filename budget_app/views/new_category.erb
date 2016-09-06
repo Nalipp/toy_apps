@@ -1,4 +1,4 @@
-<h1><%= @category_type[4..-1] %></h1>
+<h2><%= @category_type[4..-1] %></h2>
 
 <form class="form" action="/new_category/<%= @category_type %>" method="post">
   <input type="text" name="date" placeholder="date" value="<%= @date %>">
@@ -8,7 +8,20 @@
 </form>
 
 <% if find_by(@category_type) %>
-  <% find_by(@category_type).each do |type| %>
-  <h3><%= type %></h3>
-  <% end %>
+  <table>
+    <tr>
+      <th>Edit</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Description</th>
+    </tr>
+    <% find_by(@category_type).each do |type| %>
+    <tr>
+      <td><button><a href="/">edit</a></button></td>
+      <td><%= type[:date] %></td>
+      <td><%= type[:amount] %></td>
+      <td><%= type[:description] %></td>
+    </tr>
+    <% end %>
+  </table>
 <% end %>
