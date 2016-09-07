@@ -1,0 +1,18 @@
+<% if @timesheets %>
+  <table>
+    <tr>
+      <th>**********</th>
+      <th>**********</th>
+      <th>**********</th>
+    </tr>
+    <% @timesheets.each do |timesheet| %>
+    <tr>
+      <td><button><a href="timesheet/<%= timesheet[:timesheet_id] %>/edit">edit</a></button></td>
+      <td><form action="/timesheet/<%= timesheet[:timesheet_id] %>/destroy" method="post"><button type="submit">destroy</button></form></td>
+      <td><h2><a href="timesheet/<%= timesheet[:timesheet_id] %>"><%= timesheet[:timesheet_name] %></a></h2></td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<a class="plus-icon" href="/timesheet/new">+</a>

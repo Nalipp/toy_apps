@@ -1,0 +1,6 @@
+<h2>Edit timesheet</h2>
+
+<form action="/timesheet/<%= @timesheet[:timesheet_id] %>/edit" method="post">
+  <input type="text" name="timesheet_name" placeholder="timesheet name" value="<%= @timesheet[:timesheet_name] %>">
+  <button type="submit">update</button>
+</form>
