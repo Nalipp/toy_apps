@@ -1,0 +1,9 @@
+<h2>Edit</h2>
+
+<%= @category %>
+<form class="form" action="/edit_category/<%= @category.first[:category_type] %>/<%= @category.first[:id] %>" method="post">
+  <input type="text" name="date" placeholder="date" value="<%= @category.first[:date] %>">
+  <input type="text" name="amount" placeholder="amount" value="<%= @category.first[:amount] %>">
+  <input type="text" name="description" placeholder="description" value="<%= @category.first[:description] %>">
+  <button type="submit">submit</button>
+</form>
