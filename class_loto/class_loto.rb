@@ -39,7 +39,7 @@ get '/classrooms' do
   erb :classrooms
 end
 
-get '/classroom/new' do # form page to create a new classroom
+get '/classroom/new' do # create a new classroom form page
   erb :new_classroom
 end
 
@@ -52,7 +52,7 @@ post '/classroom/new' do  # post a new classroom
     erb :new_classroom
   else
     session[:classrooms] << { class_id: @class_id, classroom_name: @classroom_name }
-    redirect '/classrooms'
+    redirect "/classrooms"
   end
 end
 
@@ -61,12 +61,13 @@ get '/classroom/:class_id' do  # display classroom by id
   erb :classroom
 end
 
-get '/classroom/:class_id/edit' do # form page to update an existing classroom
+get '/classroom/:class_id/edit' do # update an existing classroom form page
   @classroom = select_classroom(params[:class_id])
+  @classroom_name = @classroom[:classroom_name]
   erb :edit_classroom
 end
 
-post '/classroom/:class_id' do
+post '/classroom/:class_id' do # update a classroom
   @classroom = select_classroom(params[:class_id])
   @classroom_name = params[:classroom_name]
 
@@ -79,7 +80,7 @@ post '/classroom/:class_id' do
   end
 end
 
-post '/classroom/:class_id/destroy' do
+post '/classroom/:class_id/destroy' do # destroy a classrrom
   @classroom = select_classroom(params[:class_id])
   session[:classrooms].reject! { |classroom| classroom == @classroom }
 
