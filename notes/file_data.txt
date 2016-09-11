@@ -7,3 +7,30 @@ File.join(data_path, file_name)
 
 Create a file_path
 file_path = File.join(data_path, file_name)
+
+******************************************************************************************************
+JSON
+
+require 'json'
+path = File.join(File.dirname(__FILE__), '../data/products.json')
+file = File.read(path)
+products_hash = JSON.parse(file)
+
+
+#update
+
+a = '{"employees":[
+      {"firstName":"John", "lastName":"Doe"},
+      {"firstName":"Anna", "lastName":"Smith"},
+      {"firstName":"Peter", "lastName":"Jones"}
+    ]}'
+
+hash = JSON.parse a
+
+modify the hash
+hash["employees"][1]["lastName"]  = "David"
+
+convert back to json
+hash.to_json
+
+******

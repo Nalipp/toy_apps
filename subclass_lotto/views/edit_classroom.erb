@@ -1,0 +1,5 @@
+<form action="/classroom/<%= @classroom[:class_id] %>" method="post">
+  <input type="text" name="classroom_name" value="<%= @classroom_name %>"></br>
+  <textarea name="student_names" rows="16" cols="25" placeholder="student names" value="<%= @student_names %>"></textarea>
+  <button type="submit">edit</button>
+</form>

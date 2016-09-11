@@ -1,0 +1,7 @@
+<h2>new classroom</h2>
+
+<form action="/classroom/new" method="post">
+  <input name="classroom_name" placeholder="classroom name" value="<%= @classroom_name %>"></br>
+  <textarea name="student_names" placeholder="enter one name per line" value="<%= @student_names %>" rows="16" cols="25"></textarea>
+  <button type="submit">create</button>
+</form>

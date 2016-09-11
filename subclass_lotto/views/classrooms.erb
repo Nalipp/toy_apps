@@ -1,0 +1,18 @@
+<% if @classrooms %>
+    <table>
+      <tr>
+        <th>edit</th>
+        <th>destroy</th>
+        <th>classroom</th>
+      </tr>
+      <% @classrooms.each do |classroom| %>
+      <tr>
+        <td><button><a href="/classroom/<%= classroom[:class_id] %>/edit">edit</a></button></td>
+        <td><form action="/classroom/<%= classroom[:class_id] %>/destroy" method="post"><button type="submit">del</button></form></td>
+        <td><a href="/classroom/<%= classroom[:class_id] %>"><%= classroom[:classroom_name] %></a></td>
+      </tr>
+      <% end %>
+    </table>
+<% end %>
+
+<a class="plus" href="/classroom/new"> + </a>

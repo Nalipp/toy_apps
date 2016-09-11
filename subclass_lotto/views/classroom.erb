@@ -1,0 +1,29 @@
+<h2><%= @classroom[:classroom_name] %></h2>
+
+<div>
+  <div class="fourth">
+    <% @classroom[:student_names_col1].each do |name|  %>
+      <h4><%= name[0].to_s + " " %><%= name[1] %></h4>
+    <% end %>
+    <h4 id="red_name">red names</h4>
+  </div>
+  <div class="fourth">
+    <% @classroom[:student_names_col2].each do |name|  %>
+      <h4><%= name[0].to_s + " " %><%= name[1] %></h4>
+    <% end %>
+    <form class="move_name" action="/classroom/<%= @classroom[:class_id] %>/move_name" method="post">
+      <input name="move_name">
+      <button type="submit" name="action" value="name_down"> < </button>
+      <button type="submit" name="action" value="name_up"> > </button>
+    </form>
+  </div>
+  <div class="fourth">
+    <% @classroom[:student_names_col3].each do |name|  %>
+      <h4><%= name[0].to_s + " " %><%= name[1] %></h4>
+    <% end %>
+    <h4 id="green_name">green names</h4>
+  </div>
+  <div class="fourth">
+    <h3>loto</h3>
+  </div>
+</div>
