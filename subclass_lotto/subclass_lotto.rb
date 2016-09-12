@@ -55,7 +55,7 @@ post '/classroom/new' do  # post a new classroom
     session[:error] = "Student names must be betweein 1 and 1000 characters"
     erb :new_classroom
   else
-    session[:classrooms] << { class_id: @class_id, classroom_name: @classroom_name, student_names_col1: [], student_names_col2: @student_names, student_names_col3: [] }
+    session[:classrooms] << { class_id: @class_id, classroom_name: @classroom_name, student_names: @student_names }
     redirect "/classrooms"
   end
 end
@@ -94,13 +94,25 @@ end
 
 def select_student(student_id, class_id)
   classroom = select_classroom(class_id)
-  classroom[:student_names_col2].select { |student| student[0] == student_id.to_i }
+  classroom[:student_names].select { |student| student[0] == student_id.to_i }
 end
 
 post '/classroom/:class_id/move_name' do
   binding.pry
   student_id = params[:move_name]
+  student = select_student(student_id, params[:class_id])[0]
 
-  select_student(student_id, params[:class_id])
+  if student == nil
+    session[:error] = "student not found"
+    erb :classroom
+  elsif params[:action] == "name_down"
+    decrease_student_value = student[2] - 1
+    updated_values = [student[0], student[1], decrease_student_value]
 
+    redirect '/classrooms'
+  else
+    increase_stduent_value = student[2] + 1
+    updated_values = [student[0], student[1], increase_student_value]
+    redirect '/classrooms'
+  end
 end
